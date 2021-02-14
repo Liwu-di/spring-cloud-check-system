@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,7 @@ public class VerifyRest {
 
     private static Logger logger = LoggerFactory.getLogger(VerifyRest.class);
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/verify")
     public JsonResponse verify(@RequestBody VerifyInfo verifyInfo){
         if(Objects.nonNull(verifyInfo)){
