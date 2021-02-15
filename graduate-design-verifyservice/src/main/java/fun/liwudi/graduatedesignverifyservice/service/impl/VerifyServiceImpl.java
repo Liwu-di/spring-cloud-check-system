@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * @author 李武第
@@ -63,7 +64,7 @@ public class VerifyServiceImpl implements VerifyService {
                 checkInfo.setCheckIp(verifyInfo.getCheckIp());
                 checkInfo.setCheckAreaX(verifyInfo.getCheckAreaX());
                 checkInfo.setCheckSuccess(0);
-                checkInfo.setCheckDate(LocalDate.now().toString());
+                checkInfo.setCheckDate(LocalDate.now().toString()+""+LocalTime.now().toString());
                 checkInfo.setCompanyCode(companyConf.getCompanyCode());
                 checkInfo.setCheckAreaY(verifyInfo.getCheckAreaY());
                 checkInfo.setUserCode(verifyInfo.getUserCode());

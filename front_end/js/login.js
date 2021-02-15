@@ -5,9 +5,9 @@ $(document).ready(function(){
 	$("#btn_login").click(function(){
         data={"userCode":$("#username").val(),"passWord":$("#password").val()};
         data=JSON.stringify(data); 
-        console.log(data);
+        //console.log(data);
         $.ajax({
-            url:"http://localhost:9000/login",
+            url:"http://liwudi.fun/info/login",
             data:data,
             type:"post",
             contentType:'application/json;charset=utf-8',
@@ -16,9 +16,10 @@ $(document).ready(function(){
                 try{
                     if(status == "success" && result['code'] == 0){
                         //console.log("success log in");
-                        console.log($("#username").val());
+                        //console.log($("#username").val());
                         $.cookie('userCode',$("#username").val(),{ expires: 7, path: '/' });
-                        console.log($.cookie('userCode'));//window.location="./main.html";
+                        //console.log($.cookie('userCode'));
+                        window.location="./main.html";
                     }
                     else{
                         alert("账号密码错误!");
