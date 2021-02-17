@@ -34,6 +34,9 @@ public class VerifyRest {
     @CrossOrigin(origins = "*")
     @PostMapping("/verify")
     public JsonResponse verify(@RequestBody VerifyInfo verifyInfo){
+        /**
+         * todo:realize the function which obtain area info consulted from ip
+         */
         if(Objects.nonNull(verifyInfo)){
             try {
                 return verifyService.getCheckInfo(verifyInfo);
