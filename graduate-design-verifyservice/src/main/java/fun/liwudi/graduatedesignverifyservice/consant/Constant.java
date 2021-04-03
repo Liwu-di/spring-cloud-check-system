@@ -5,7 +5,7 @@ package fun.liwudi.graduatedesignverifyservice.consant;
  */
 public interface Constant {
 
-    Integer CHECK_ARRANGE = 500;
+    Integer CHECK_ARRANGE = 500000;
     String SUCCESS_INFO = "success";
     String CHECK_ERROR_INFO = "you have not reached at correct place to check in or you should " +
             "shut down your VPN service";

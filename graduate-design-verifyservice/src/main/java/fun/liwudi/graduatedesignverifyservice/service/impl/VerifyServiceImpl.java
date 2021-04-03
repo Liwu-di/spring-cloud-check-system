@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 /**
  * @author 李武第
@@ -57,7 +58,8 @@ public class VerifyServiceImpl implements VerifyService {
                 Double.valueOf(companyConf.getAreaGpsY().toString()),
                 Double.valueOf(companyConf.getAreaGpsX().toString())
         )< Constant.CHECK_ARRANGE
-        && companyConf.getAreaIp().split(" ")[0].equals(verifyInfo.getCheckIp().split(" ")[0])
+        && Objects.nonNull(verifyInfo.getCheckIp())
+                /*companyConf.getAreaIp().split(" ")[0].equals(verifyInfo.getCheckIp().split(" ")[0])*/
         ){
             try {
                 CheckInfo checkInfo = new CheckInfo();
@@ -69,7 +71,12 @@ public class VerifyServiceImpl implements VerifyService {
                 checkInfo.setCheckAreaY(verifyInfo.getCheckAreaY());
                 checkInfo.setUserCode(verifyInfo.getUserCode());
                 checkInfoFeign.check(checkInfo);
-                return jsonResponseHelper.getJsonResponse(0,Constant.SUCCESS_INFO,null);
+                return jsonResponseHelper.getJsonResponse(0,Constant.SUCCESS_INFO,gpsHelper.getDistance(
+                        Double.valueOf(verifyInfo.getCheckAreaY().toString()),
+                        Double.valueOf(verifyInfo.getCheckAreaX().toString()),
+                        Double.valueOf(companyConf.getAreaGpsY().toString()),
+                        Double.valueOf(companyConf.getAreaGpsX().toString())
+                ));
             } catch (Exception e){
                 logger.error(e.getMessage(),e);
                 return jsonResponseHelper.getJsonResponse(1,Constant.ERROR_INFO,null);
@@ -86,7 +93,12 @@ public class VerifyServiceImpl implements VerifyService {
                 checkInfo.setCheckAreaY(verifyInfo.getCheckAreaY());
                 checkInfo.setUserCode(verifyInfo.getUserCode());
                 checkInfoFeign.check(checkInfo);
-                return jsonResponseHelper.getJsonResponse(1,Constant.CHECK_ERROR_INFO,null);
+                return jsonResponseHelper.getJsonResponse(1,Constant.CHECK_ERROR_INFO,gpsHelper.getDistance(
+                        Double.valueOf(verifyInfo.getCheckAreaY().toString()),
+                        Double.valueOf(verifyInfo.getCheckAreaX().toString()),
+                        Double.valueOf(companyConf.getAreaGpsY().toString()),
+                        Double.valueOf(companyConf.getAreaGpsX().toString())
+                ));
             } catch (Exception e){
                 logger.error(e.getMessage(),e);
                 return jsonResponseHelper.getJsonResponse(1,Constant.ERROR_INFO,null);
