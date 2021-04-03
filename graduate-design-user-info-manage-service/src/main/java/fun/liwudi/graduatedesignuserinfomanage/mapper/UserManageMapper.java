@@ -16,5 +16,7 @@ public interface UserManageMapper {
     void updateUserInfo(UserInfo userInfo);
     UserInfo selectUserInfo(UserInfo userInfo);
     List<UserInfo> selectUserInfos(UserInfo userInfo);
+    void batchSave(List<UserInfo> list);
+    UserInfo selectUserInfoDeleted(UserInfo userInfo);
     
 }

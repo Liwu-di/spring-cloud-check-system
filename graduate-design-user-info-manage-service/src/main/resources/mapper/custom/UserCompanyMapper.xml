@@ -44,4 +44,11 @@
         </if>
     </select>
 
+    <insert id="batchSave" parameterType="fun.liwudi.graduatedesignuserinfomanage.domain.UserConf">
+        insert into user_conf (user_code, company_code) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.userCode},#{item.companyCode})
+        </foreach>
+    </insert>
+
 </mapper>

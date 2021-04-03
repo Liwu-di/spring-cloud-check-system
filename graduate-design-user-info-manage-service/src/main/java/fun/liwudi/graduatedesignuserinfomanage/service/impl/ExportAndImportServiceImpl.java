@@ -1,13 +1,18 @@
 package fun.liwudi.graduatedesignuserinfomanage.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelReader;
 import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.read.metadata.ReadSheet;
 import com.alibaba.excel.write.builder.ExcelWriterBuilder;
 import com.alibaba.excel.write.builder.ExcelWriterSheetBuilder;
 import fun.liwudi.graduatedesignuserinfomanage.domain.CheckInfo;
 import fun.liwudi.graduatedesignuserinfomanage.domain.CheckInfoExport;
+import fun.liwudi.graduatedesignuserinfomanage.domain.UserInfoImport;
+import fun.liwudi.graduatedesignuserinfomanage.listener.UserInfoListener;
 import fun.liwudi.graduatedesignuserinfomanage.mapper.CheckInfoMapper;
 import fun.liwudi.graduatedesignuserinfomanage.mapper.UserCompanyMapper;
+import fun.liwudi.graduatedesignuserinfomanage.mapper.UserManageMapper;
 import fun.liwudi.graduatedesignuserinfomanage.service.ExportAndImportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,13 +43,28 @@ public class ExportAndImportServiceImpl implements ExportAndImportService {
     private UserCompanyMapper userCompanyMapper;
 
     @Autowired
+    private UserManageMapper userManageMapper;
+
+    @Autowired
     private CheckInfoMapper checkInfoMapper;
 
     private Logger logger = LoggerFactory.getLogger(ExportAndImportServiceImpl.class);
 
     @Override
     public void importUserInfo(MultipartFile file) {
-
+        ExcelReader excelReader = null;
+        try {
+            excelReader = EasyExcel.read(file.getInputStream(), UserInfoImport.class, new UserInfoListener(userManageMapper,userCompanyMapper)).build();
+            ReadSheet readSheet = EasyExcel.readSheet(0).build();
+            excelReader.read(readSheet);
+        } catch (IOException e) {
+            logger.error(e.getMessage(),e);
+        } finally {
+            if (excelReader != null) {
+                // 这里千万别忘记关闭，读的时候会创建临时文件，到时磁盘会崩的
+                excelReader.finish();
+            }
+        }
     }
 
     @Override

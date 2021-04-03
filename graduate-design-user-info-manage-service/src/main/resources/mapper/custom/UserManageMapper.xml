@@ -41,4 +41,29 @@
         from user_info ui
         where delete_flag =0;
     </select>
+    <insert id="batchSave" parameterType="fun.liwudi.graduatedesignuserinfomanage.domain.UserInfo">
+        insert into user_info (user_name, user_code, delete_flag, password, id_card)values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.userName},#{item.userCode},#{item.deleteFlag},#{item.passWord},#{item.idCard})
+        </foreach>
+    </insert>
+
+    <select id="selectUserInfoDeleted" parameterType="fun.liwudi.graduatedesignuserinfomanage.domain.UserInfo" resultType="fun.liwudi.graduatedesignuserinfomanage.domain.UserInfo">
+        select user_name as userName, user_code as userCode, password as passWord, id_card as idCard
+        from user_info ui
+        where delete_flag =1
+        <if test="userName != null and userName!=''">
+            and user_name = #{userName}
+        </if>
+        <if test="userCode != null and userCode!=''">
+            and user_code = #{userCode}
+        </if>
+        <if test="passWord != null and passWord!=''">
+            and password = #{passWord}
+        </if>
+        <if test="idCard != null and idCard!=''">
+            and id_card = #{idCard}
+        </if>
+        limit 1
+    </select>
 </mapper>

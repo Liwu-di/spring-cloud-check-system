@@ -16,5 +16,6 @@ public interface UserCompanyMapper {
     UserConf selectUserCompany (UserConf userConf);
     List<UserConf> selectByUserCode(UserConf userConf);
     List<UserConf> selectByCompanyCode(UserConf userConf);
+    void batchSave(List<UserConf> list);
 
 }
