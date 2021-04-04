@@ -5,10 +5,10 @@ $(document).ready(function(){
         data=JSON.stringify(data);
         //console.log(data);
         $.ajax({
-            url:"http://liwudi.fun/info/login",
-            data:data,
-            type:"post",
-            contentType:'application/json;charset=utf-8',
+            url: "http://liwudi.fun/info/login",
+            data: data,
+            type: "post",
+            contentType: 'application/json;charset=utf-8',
             success:function(result,status){
                 //console.log(result,status);
                 try{
