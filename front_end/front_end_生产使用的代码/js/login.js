@@ -1,13 +1,13 @@
 //jQuery.support.cors = true;
 $(document).ready(function(){
-    $("#login").click(function(){
+    $("#anyilogin").click(function(){
         data={"userCode":$("#login-username").val(),"passWord":$("#login-password").val()};
         data=JSON.stringify(data);
-        //console.log(data);
+        console.log(data);
         $.ajax({
-            url: "http://liwudi.fun/info/login",
+            url: "http://47.93.192.164:9000/login/",
             data: data,
-            type: "post",
+            type: "POST",
             contentType: 'application/json;charset=utf-8',
             success:function(result,status){
                 //console.log(result,status);
@@ -28,7 +28,7 @@ $(document).ready(function(){
                     alert(exception);
                 }
             }
-        })
+        });
     });
 });
 
