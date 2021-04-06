@@ -9,6 +9,7 @@ import fun.liwudi.graduatedesignverifyservice.feign.UserConfFeign;
 import fun.liwudi.graduatedesignverifyservice.helper.GpsHelper;
 import fun.liwudi.graduatedesignverifyservice.helper.JsonResponseHelper;
 import fun.liwudi.graduatedesignverifyservice.service.VerifyService;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class VerifyServiceImpl implements VerifyService {
 
     @Autowired
     private CompanyUserFeign companyUserFeign;
+
 
     private static Logger logger = LoggerFactory.getLogger(VerifyServiceImpl.class);
 
@@ -104,6 +106,24 @@ public class VerifyServiceImpl implements VerifyService {
                 return jsonResponseHelper.getJsonResponse(1,Constant.ERROR_INFO,null);
             }
 
+        }
+    }
+
+    @Override
+    public Boolean verifyAdmin(UserConf userConf) {
+        if(Objects.isNull(userConf)){
+            return false;
+        }
+        else {
+            UserConf userConf1 = companyUserFeign.selectOne(userConf).getData();
+            userConf.setCompanyCode(userConf1.getCompanyCode());
+            java.util.List<String> list = companyUserFeign.selectKey(userConf);
+            if(list.contains(userConf.getKey())){
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     }
 }

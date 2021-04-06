@@ -2,6 +2,8 @@ package fun.liwudi.graduatedesignverifyservice.rest;
 
 import fun.liwudi.graduatedesignverifyservice.consant.Constant;
 import fun.liwudi.graduatedesignverifyservice.domain.JsonResponse;
+import fun.liwudi.graduatedesignverifyservice.domain.UserConf;
+import fun.liwudi.graduatedesignverifyservice.domain.UserInfo;
 import fun.liwudi.graduatedesignverifyservice.domain.VerifyInfo;
 import fun.liwudi.graduatedesignverifyservice.helper.JsonResponseHelper;
 import fun.liwudi.graduatedesignverifyservice.service.VerifyService;
@@ -47,6 +49,22 @@ public class VerifyRest {
         }
         else {
             return jsonResponseHelper.getJsonResponse(1, Constant.EMPTY_INFO,null);
+        }
+    }
+
+    @PostMapping("/verifyAdmin")
+    public JsonResponse verifyAdmin(@RequestBody UserConf userConf){
+        try{
+            if(verifyService.verifyAdmin(userConf)){
+                return jsonResponseHelper.getJsonResponse(0,Constant.SUCCESS_INFO,null);
+            }
+            else {
+                return jsonResponseHelper.getJsonResponse(1,Constant.FAIL,null);
+            }
+        }
+        catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return jsonResponseHelper.getJsonResponse(1,Constant.ERROR_INFO,null);
         }
     }
 }

@@ -6,6 +6,15 @@ package fun.liwudi.graduatedesignverifyservice.domain;
 public class UserConf {
     String companyCode;
     String userCode;
+    String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getCompanyCode() {
         return companyCode;

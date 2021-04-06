@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.invoke.MutableCallSite;
 import java.util.List;
 /**
  * @author 李武第
@@ -26,5 +27,11 @@ public interface ExportAndImportService {
     void exportCheckInfo(CheckInfo checkInfo,
                          HttpServletRequest request,
                          HttpServletResponse response);
+
+    /**
+     * 导入公司实体配置信息
+     * @param file
+     */
+    void importCompanyConf (MultipartFile file);
 
 }

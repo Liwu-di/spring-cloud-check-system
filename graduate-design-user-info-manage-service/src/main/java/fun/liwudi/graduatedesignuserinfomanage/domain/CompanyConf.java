@@ -12,6 +12,15 @@ public class CompanyConf {
     String areaIp;
     BigDecimal areaGpsX;
     BigDecimal areaGpsY;
+    BigDecimal checkArea;
+
+    public BigDecimal getCheckArea() {
+        return checkArea;
+    }
+
+    public void setCheckArea(BigDecimal checkArea) {
+        this.checkArea = checkArea;
+    }
 
     public String getCompanyName() {
         return companyName;
@@ -61,6 +70,7 @@ public class CompanyConf {
                 ", areaIp='" + areaIp + '\'' +
                 ", areaGpsX=" + areaGpsX +
                 ", areaGpsY=" + areaGpsY +
+                ", checkArea=" + checkArea +
                 '}';
     }
 }

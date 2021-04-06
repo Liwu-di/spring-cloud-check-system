@@ -3,6 +3,7 @@ package fun.liwudi.graduatedesignuserinfomanage.rest;
 import fun.liwudi.graduatedesignuserinfomanage.constants.Constants;
 import fun.liwudi.graduatedesignuserinfomanage.domain.CheckInfo;
 import fun.liwudi.graduatedesignuserinfomanage.domain.JsonResponse;
+import fun.liwudi.graduatedesignuserinfomanage.domain.UserConf;
 import fun.liwudi.graduatedesignuserinfomanage.helper.JsonResponseHelper;
 import fun.liwudi.graduatedesignuserinfomanage.service.CheckInfoService;
 import org.apache.commons.lang.StringUtils;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -97,5 +98,10 @@ public class CheckInfoRest {
         else {
             return jsonResponseHelper.getJsonResponse(Constants.INFO_EMPTY,1);
         }
+    }
+
+    @PostMapping("/selectKey")
+    public List<String> selectKey(@RequestBody UserConf userConf){
+        return checkInfoService.getKey(userConf);
     }
 }

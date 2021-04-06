@@ -36,6 +36,22 @@ public class ExportAndImportRest {
                     Constants.SUCCESS,0);
         }
         catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return jsonResponseHelper.getJsonResponse(
+                    Constants.IMPORT_ERROR,1
+            );
+        }
+    }
+
+    @PostMapping("/importCompanyConf")
+    public JsonResponse importCompanyConf(@RequestParam("file") MultipartFile file){
+        try {
+            exportAndImportService.importCompanyConf(file);
+            return jsonResponseHelper.getJsonResponse(
+                    Constants.SUCCESS,0);
+        }
+        catch (Exception e){
+            logger.error(e.getMessage(),e);
             return jsonResponseHelper.getJsonResponse(
                     Constants.IMPORT_ERROR,1
             );

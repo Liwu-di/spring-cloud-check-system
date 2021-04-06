@@ -67,9 +67,7 @@ public class UserCompanyRelationRest {
 
     @PostMapping("/selectUserCompany")
     public JsonResponse selectOne(@RequestBody UserConf userConf){
-        if(Objects.nonNull(userConf)
-                && StringUtils.isNotBlank(userConf.getUserCode())
-                && StringUtils.isNotBlank(userConf.getCompanyCode())){
+        if(Objects.nonNull(userConf)){
             try {
 
                 return jsonResponseHelper.getJsonResponseWithData(Constants.SUCCESS,0,userCompanyRelationService.selectUserCompany(userConf));

@@ -11,4 +11,5 @@ public interface Constant {
             "shut down your VPN service";
     String ERROR_INFO = "error";
     String EMPTY_INFO = "something is empty";
+    String FAIL = "verify fail";
 }

@@ -5,8 +5,7 @@ import fun.liwudi.graduatedesignverifyservice.domain.UserConf;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import java.awt.*;
+import java.util.List;
 
 /**
  * @author 李武第
@@ -18,4 +17,7 @@ public interface CompanyUserFeign {
 
     @PostMapping("/selectUserCompanyByUserCode")
     JsonResponse<java.util.List<UserConf>> selectByUserCode(@RequestBody UserConf userConf);
+
+    @PostMapping("/selectKey")
+    List<String> selectKey(UserConf userConf);
 }

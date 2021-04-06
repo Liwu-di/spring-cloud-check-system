@@ -8,9 +8,12 @@ import com.alibaba.excel.write.builder.ExcelWriterBuilder;
 import com.alibaba.excel.write.builder.ExcelWriterSheetBuilder;
 import fun.liwudi.graduatedesignuserinfomanage.domain.CheckInfo;
 import fun.liwudi.graduatedesignuserinfomanage.domain.CheckInfoExport;
+import fun.liwudi.graduatedesignuserinfomanage.domain.CompanyConfImport;
 import fun.liwudi.graduatedesignuserinfomanage.domain.UserInfoImport;
+import fun.liwudi.graduatedesignuserinfomanage.listener.CompanyConfListener;
 import fun.liwudi.graduatedesignuserinfomanage.listener.UserInfoListener;
 import fun.liwudi.graduatedesignuserinfomanage.mapper.CheckInfoMapper;
+import fun.liwudi.graduatedesignuserinfomanage.mapper.CompanyConfMapper;
 import fun.liwudi.graduatedesignuserinfomanage.mapper.UserCompanyMapper;
 import fun.liwudi.graduatedesignuserinfomanage.mapper.UserManageMapper;
 import fun.liwudi.graduatedesignuserinfomanage.service.ExportAndImportService;
@@ -47,6 +50,9 @@ public class ExportAndImportServiceImpl implements ExportAndImportService {
 
     @Autowired
     private CheckInfoMapper checkInfoMapper;
+
+    @Autowired
+    private CompanyConfMapper companyConfMapper;
 
     private Logger logger = LoggerFactory.getLogger(ExportAndImportServiceImpl.class);
 
@@ -109,6 +115,23 @@ public class ExportAndImportServiceImpl implements ExportAndImportService {
                 response.getOutputStream().close();
             } catch (IOException e) {
                 logger.error(e.getMessage(),e);
+            }
+        }
+    }
+
+    @Override
+    public void importCompanyConf(MultipartFile file) {
+        ExcelReader excelReader = null;
+        try {
+            excelReader = EasyExcel.read(file.getInputStream(), CompanyConfImport.class, new CompanyConfListener(companyConfMapper,userCompanyMapper)).build();
+            ReadSheet readSheet = EasyExcel.readSheet(0).build();
+            excelReader.read(readSheet);
+        } catch (IOException e) {
+            logger.error(e.getMessage(),e);
+        } finally {
+            if (excelReader != null) {
+                // 这里千万别忘记关闭，读的时候会创建临时文件，到时磁盘会崩的
+                excelReader.finish();
             }
         }
     }

@@ -72,4 +72,11 @@
             and area_gps_y = #{areaGpsY}
         </if>
     </select>
+
+    <insert id="batchSave" parameterType="fun.liwudi.graduatedesignuserinfomanage.domain.CompanyConf">
+        insert into company_conf( company_code, company_name, area_ip, area_gps_x, area_gps_y, check_area) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.companyCode},#{item.companyName},#{item.areaIp},#{item.areaGpsX},#{item.areaGpsY},#{item.checkArea})
+        </foreach>
+    </insert>
 </mapper>

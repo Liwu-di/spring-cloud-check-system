@@ -1,6 +1,7 @@
 package fun.liwudi.graduatedesignuserinfomanage.service.impl;
 
 import fun.liwudi.graduatedesignuserinfomanage.domain.CheckInfo;
+import fun.liwudi.graduatedesignuserinfomanage.domain.UserConf;
 import fun.liwudi.graduatedesignuserinfomanage.mapper.CheckInfoMapper;
 import fun.liwudi.graduatedesignuserinfomanage.service.CheckInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,10 @@ public class CheckInfoServiceImpl implements CheckInfoService {
     @Override
     public List<CheckInfo> selectCheckInfosByCompanyCode(CheckInfo checkInfo) {
         return checkInfoMapper.selectCheckInfosByCompanyCode(checkInfo);
+    }
+
+    @Override
+    public List<String> getKey(UserConf userConf) {
+        return checkInfoMapper.getKey(userConf);
     }
 }

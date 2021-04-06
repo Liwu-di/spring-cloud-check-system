@@ -65,4 +65,8 @@
             and company_code = #{companyCode}
         </if>
     </select>
+
+    <select id="getKey" parameterType="fun.liwudi.graduatedesignuserinfomanage.domain.UserConf" resultType="String">
+        select secret from secret_key where company_code = #{companyCode}
+    </select>
 </mapper>
