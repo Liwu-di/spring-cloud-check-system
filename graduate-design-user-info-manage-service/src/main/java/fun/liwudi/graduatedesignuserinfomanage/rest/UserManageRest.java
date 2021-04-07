@@ -69,7 +69,9 @@ public class UserManageRest {
         if (Objects.nonNull(userInfo) && StringUtils.isNotBlank(userInfo.getUserCode())){
             try {
                 userManageService.updateUserInfo(userInfo);
-                return jsonResponseHelper.getJsonResponse(Constants.SUCCESS,0);
+                UserInfo userInfo1 = new UserInfo();
+                userInfo1.setUserCode(userInfo.getUserCode());
+                return jsonResponseHelper.getJsonResponseWithData(Constants.SUCCESS,0,userManageService.selectUserInfo(userInfo));
             }catch (Exception e){
                 logger.error(e.getMessage(),e);
                 return jsonResponseHelper.getJsonResponse(Constants.FAIL,1);

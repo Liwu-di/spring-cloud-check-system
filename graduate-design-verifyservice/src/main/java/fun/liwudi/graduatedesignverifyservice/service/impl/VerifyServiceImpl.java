@@ -68,7 +68,7 @@ public class VerifyServiceImpl implements VerifyService {
                 checkInfo.setCheckIp(verifyInfo.getCheckIp());
                 checkInfo.setCheckAreaX(verifyInfo.getCheckAreaX());
                 checkInfo.setCheckSuccess(0);
-                checkInfo.setCheckDate(LocalDate.now().toString()+""+LocalTime.now().toString());
+                checkInfo.setCheckDate(LocalDate.now().toString().concat(" ").concat(LocalTime.now().toString()));
                 checkInfo.setCompanyCode(companyConf.getCompanyCode());
                 checkInfo.setCheckAreaY(verifyInfo.getCheckAreaY());
                 checkInfo.setUserCode(verifyInfo.getUserCode());
@@ -90,7 +90,7 @@ public class VerifyServiceImpl implements VerifyService {
                 checkInfo.setCheckIp(verifyInfo.getCheckIp());
                 checkInfo.setCheckAreaX(verifyInfo.getCheckAreaX());
                 checkInfo.setCheckSuccess(1);
-                checkInfo.setCheckDate(LocalDate.now().toString());
+                checkInfo.setCheckDate(LocalDate.now().toString().concat(" ").concat(LocalTime.now().toString()));
                 checkInfo.setCompanyCode(companyConf.getCompanyCode());
                 checkInfo.setCheckAreaY(verifyInfo.getCheckAreaY());
                 checkInfo.setUserCode(verifyInfo.getUserCode());
