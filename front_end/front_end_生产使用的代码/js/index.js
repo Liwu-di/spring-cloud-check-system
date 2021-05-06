@@ -3,7 +3,8 @@ $(document).ready(function (){
     data=JSON.stringify(data);
     console.log(data);
     $.ajax({
-        url:"http://liwudi.fun/info/selectByUserCode",
+        //url:"http://liwudi.fun/info/selectByUserCode",
+        url:"http://localhost:9000/selectByUserCode",
         data:data,
         type:"post",
         contentType:'application/json;charset=utf-8',

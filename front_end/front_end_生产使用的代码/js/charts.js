@@ -1,16 +1,37 @@
 $(document).ready(function (){
     $("#ipGpsCheck").click(function (){
 
-        var geolocation = new qq.maps.Geolocation("KOJBZ-PFNWJ-QC2FT-FATZJ-WQXQZ-S6FIS", "myapp");
-        geolocation.getLocation(showPosition);
+        //prod code
+        //var geolocation = new qq.maps.Geolocation("KOJBZ-PFNWJ-QC2FT-FATZJ-WQXQZ-S6FIS", "myapp");
+        //geolocation.getLocation(showPosition);
+
+        //test
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+
+        else
+        {
+            alert("该浏览器不支持获取地理位置。");
+        }
+
+        // function showPosition(position)
+        // {
+        //     console.log("纬度: " + position.coords.latitude +
+        //         "<br>经度: " + position.coords.longitude);
+        //     alert("纬度: " + position.coords.latitude +
+        //         "<br>经度: " + position.coords.longitude);
+        // }
 
         function showPosition(position) {
             console.log(position)
-            data={"userCode":$.cookie("userCode"), "checkIp":(returnCitySN["cname"]+' '+returnCitySN["cip"]), "checkAreaX":position.lng, "checkAreaY":position.lat};
+            data={"userCode":$.cookie("userCode"), "checkIp":(returnCitySN["cname"]+' '+returnCitySN["cip"]), "checkAreaX":position.coords.longitude, "checkAreaY":position.coords.latitude};
             data=JSON.stringify(data);
             console.log(data);
             $.ajax({
-                url:"http://liwudi.fun/verify/verify",
+                //url:"http://liwudi.fun/verify/verify",
+                url:"http://localhost:9001/verify",
                 data:data,
                 type:"post",
                 contentType:'application/json;charset=utf-8',

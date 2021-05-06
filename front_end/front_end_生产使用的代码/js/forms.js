@@ -4,7 +4,8 @@ $(document).ready(function (){
     data=JSON.stringify(data);
     $("#account").val($.cookie("userCode"));
     $.ajax({
-        url:"http://liwudi.fun/info/selectUser",
+        //url:"http://liwudi.fun/info/selectUser",
+        url:"http://localhost:9000/selectUser",
         data:data,
         type:"post",
         contentType:'application/json;charset=utf-8',
@@ -59,7 +60,8 @@ $(document).ready(function (){
             };
             data=JSON.stringify(data);
             $.ajax({
-                url:"http://liwudi.fun/info/updateUser",
+                //url:"http://liwudi.fun/info/updateUser",
+                url:"http://localhost:9000/updateUser",
                 data:data,
                 type:"post",
                 contentType:'application/json;charset=utf-8',

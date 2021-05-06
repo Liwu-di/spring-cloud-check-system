@@ -4,7 +4,8 @@ $(document).ready(function(){
         data={"userCode":$("#login-username").val(),"passWord":$("#login-password").val()};
         data=JSON.stringify(data);
         $.ajax({
-            url:"http://liwudi.fun/info/login",
+            //url:"http://liwudi.fun/info/login",
+            url:"http://localhost:9000/login",
             data:data,
             type:"POST",
             async: false,
