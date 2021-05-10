@@ -37,9 +37,10 @@ public class BiCodeVerifyRest {
     public Object getBiCode(@RequestBody BiCode code){
         UserConf userConf = new UserConf();
         userConf.setUserCode(code.getUserCode());
+        userConf = companyUserFeign.selectOne(userConf).getData();
         List list = companyUserFeign.selectKey(userConf);
         if(list.contains(code.getSpecialCode())){
-            return jsonResponseHelper.getJsonResponse(0,Constant.SUCCESS_INFO,redisKeyHelper.generateMealNo());
+            return jsonResponseHelper.getJsonResponse(0,Constant.SUCCESS_INFO,redisKeyHelper.generateMealNo(userConf));
         }
         else {
             return jsonResponseHelper.getJsonResponse(1,Constant.ERROR_INFO,null);

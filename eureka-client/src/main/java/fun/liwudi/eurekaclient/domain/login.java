@@ -1,7 +1,7 @@
 package fun.liwudi.eurekaclient.domain;
 
 /**
- * @author 张安熠
+ * @author 李武第
  */
 public class login {
 

@@ -1,6 +1,7 @@
 package fun.liwudi.graduatedesignverifyservice;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
@@ -17,6 +18,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.data.redis.support.atomic.RedisAtomicLong;
 
 import java.io.Serializable;
 
@@ -31,6 +33,9 @@ import java.io.Serializable;
 @EnableZuulProxy
 public class GraduateDesignVerifyServiceApplication {
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @Bean
     public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory connectionFactory) {
         RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
@@ -38,6 +43,11 @@ public class GraduateDesignVerifyServiceApplication {
         redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
         redisTemplate.setConnectionFactory(connectionFactory);
         return redisTemplate;
+    }
+
+    @Bean
+    public RedisAtomicLong redisAtomicLong(){
+       return new RedisAtomicLong("0", redisTemplate.getConnectionFactory());
     }
 
     public static void main(String[] args) {
