@@ -78,7 +78,7 @@
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Tables       </li>
+            <li class="breadcrumb-item active">辅助功能       </li>
           </ul>
         </div>
       </div>
@@ -86,47 +86,93 @@
         <div class="container-fluid">
           <!-- Page Header-->
           <header> 
-            <h1 class="h3 display">Tables            </h1>
+            <h1 class="h3 display">辅助功能            </h1>
           </header>
           <div class="row">
             <div class="col-lg-6">
               <div class="card">
                 <div class="card-header">
-                  <h4>Basic Table</h4>
+                  <h4>二维码打卡</h4>
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Username</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+<!--                  <div class="table-responsive">-->
+<!--                    <table class="table">-->
+<!--                      <thead>-->
+<!--                        <tr>-->
+<!--                          <th>#</th>-->
+<!--                          <th>First Name</th>-->
+<!--                          <th>Last Name</th>-->
+<!--                          <th>Username</th>-->
+<!--                        </tr>-->
+<!--                      </thead>-->
+<!--                      <tbody>-->
+<!--                        <tr>-->
+<!--                          <th scope="row">1</th>-->
+<!--                          <td>Mark</td>-->
+<!--                          <td>Otto</td>-->
+<!--                          <td>@mdo</td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                          <th scope="row">2</th>-->
+<!--                          <td>Jacob</td>-->
+<!--                          <td>Thornton</td>-->
+<!--                          <td>@fat</td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                          <th scope="row">3</th>-->
+<!--                          <td>Larry</td>-->
+<!--                          <td>the Bird</td>-->
+<!--                          <td>@twitter</td>-->
+<!--                        </tr>-->
+<!--                      </tbody>-->
+<!--                    </table>-->
+<!--                  </div>-->
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div id="qrcode"></div>
+                        </td>
+                        <td>
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="card">
+                                  <div class="card-header d-flex align-items-center">
+                                    <h4>更新二维码</h4>
+                                  </div>
+                                  <div class="card-body">
+                                    <div class="form-horizontal">
+                                      <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label">管理账号</label>
+                                        <div class="col-sm-10">
+                                          <input id="login-username" type="text" >
+                                        </div>
+                                      </div>
+                                      <div class="line"></div>
+                                      <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label">特权码</label>
+                                        <div class="col-sm-10">
+                                          <input id="login-password" type="password" name="password" >
+                                        </div>
+                                      </div>
+                                      <div class="line"></div>
+                                      <div class="form-group row">
+                                        <div class="col-sm-4 offset-sm-2">
+                                          <button id="submitBiCode"  class="btn btn-primary">生成</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
                 </div>
               </div>
             </div>
@@ -289,15 +335,17 @@
       </footer>
     </div>
     <!-- JavaScript files-->
-    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="js/jquery-1.10.2.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="https://www.jq22.com/jquery/bootstrap-4.2.1.js"></script>
+    <script src="js/bootstrap-4.2.1.js"></script>
     <script src="js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
     <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="js/qrcode.min.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script src="js/tables.js"></script>
   </body>
 </html>

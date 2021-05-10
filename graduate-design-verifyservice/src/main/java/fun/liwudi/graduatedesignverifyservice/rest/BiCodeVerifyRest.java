@@ -4,6 +4,7 @@ import fun.liwudi.graduatedesignverifyservice.consant.Constant;
 import fun.liwudi.graduatedesignverifyservice.domain.BiCode;
 import fun.liwudi.graduatedesignverifyservice.domain.UserConf;
 import fun.liwudi.graduatedesignverifyservice.domain.UserInfo;
+import fun.liwudi.graduatedesignverifyservice.domain.VerifyInfo;
 import fun.liwudi.graduatedesignverifyservice.feign.CompanyUserFeign;
 import fun.liwudi.graduatedesignverifyservice.helper.JsonResponseHelper;
 import fun.liwudi.graduatedesignverifyservice.helper.RedisKeyHelper;
@@ -14,10 +15,12 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.data.redis.support.atomic.RedisAtomicLong;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
+
 /**
  * @author 李武第
  */

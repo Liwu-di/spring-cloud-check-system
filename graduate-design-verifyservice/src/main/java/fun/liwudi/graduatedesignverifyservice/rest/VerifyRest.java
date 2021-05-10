@@ -11,11 +11,9 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.jar.JarEntry;
 
@@ -65,6 +63,29 @@ public class VerifyRest {
         catch (Exception e){
             logger.error(e.getMessage(),e);
             return jsonResponseHelper.getJsonResponse(1,Constant.ERROR_INFO,null);
+        }
+    }
+
+    @GetMapping("/verifyByBi")
+    public Object verifyByBi(@RequestParam("userCode") String userCode,
+                             @RequestParam("checkIp") String checkIp,
+                             @RequestParam("checkAreaX") String checkAreaX,
+                             @RequestParam("checkAreaY") String checkAreaY,
+                             @RequestParam("biCode") String biCode) {
+        VerifyInfo verifyInfo = new VerifyInfo();
+        verifyInfo.setUserCode(userCode);
+        verifyInfo.setCheckAreaX(BigDecimal.valueOf(Double.valueOf(checkAreaX)));
+        verifyInfo.setCheckAreaY(BigDecimal.valueOf(Double.valueOf(checkAreaY)));
+        verifyInfo.setCheckIp(checkIp);
+        if (Objects.nonNull(verifyInfo)) {
+            try {
+                return verifyService.getCheckInfo(verifyInfo);
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
+                return jsonResponseHelper.getJsonResponse(1, Constant.ERROR_INFO, null);
+            }
+        } else {
+            return jsonResponseHelper.getJsonResponse(1, Constant.EMPTY_INFO, null);
         }
     }
 }
