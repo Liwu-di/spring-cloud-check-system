@@ -30,7 +30,7 @@ $(document).ready(function(){
                             // );
                             qrcode.makeCode("http://localhost:9001/verifyByBi?biCode=" +
                                 result['data'] +
-                                "&userCode=" + $.cookie("userCode") + "&" + "checkIp=" + "二维码打卡"
+                                "&userCode=" + $.cookie("userCode") + "&" + "checkIp=" + "%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%93%E5%8D%A1"
                                 + "&checkAreaX=" + position.coords.longitude + "&checkAreaY=" + position.coords.latitude
                             ); // 生成另外一个二维码
                         }
