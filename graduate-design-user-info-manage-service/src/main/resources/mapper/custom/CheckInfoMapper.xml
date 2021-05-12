@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="fun.liwudi.graduatedesignuserinfomanage.mapper.CheckInfoMapper">
     <insert id="addCheckInfo" parameterType="fun.liwudi.graduatedesignuserinfomanage.domain.CheckInfo">
-        insert into check_info(user_code, check_area_x, check_ip, check_area_y, company_code,check_success,check_date)
+        insert into check_info(`user_code`, `check_area_x`, `check_ip`, `check_area_y`, `company_code`,`check_success`,`check_date`)
         values (#{userCode},#{checkAreaX},#{checkIp},#{checkAreaY},#{companyCode},#{checkSuccess},#{checkDate});
     </insert>
 

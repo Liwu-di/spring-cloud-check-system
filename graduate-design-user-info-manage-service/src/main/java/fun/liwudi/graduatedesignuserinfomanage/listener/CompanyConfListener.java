@@ -7,6 +7,7 @@ import fun.liwudi.graduatedesignuserinfomanage.domain.*;
 import fun.liwudi.graduatedesignuserinfomanage.mapper.CompanyConfMapper;
 import fun.liwudi.graduatedesignuserinfomanage.mapper.UserCompanyMapper;
 import fun.liwudi.graduatedesignuserinfomanage.mapper.UserManageMapper;
+import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -78,6 +79,9 @@ public class CompanyConfListener extends AnalysisEventListener<CompanyConfImport
                 companyConfs.add(companyConf1);
             }
         });
-        companyConfMapper.batchSave(companyConfs);
+        if(!CollectionUtils.isEmpty(companyConfs)){
+            companyConfMapper.batchSave(companyConfs);
+        }
+
     }
 }

@@ -10,6 +10,7 @@ import fun.liwudi.graduatedesignuserinfomanage.domain.UserInfoImport;
 import fun.liwudi.graduatedesignuserinfomanage.mapper.UserCompanyMapper;
 import fun.liwudi.graduatedesignuserinfomanage.mapper.UserManageMapper;
 import org.apache.catalina.User;
+import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -87,7 +88,11 @@ public class UserInfoListener extends AnalysisEventListener<UserInfoImport> {
             }
 
         });
-        userManageMapper.batchSave(userInfos);
-        userCompanyMapper.batchSave(companyConfs);
+        if(!CollectionUtils.isEmpty(userInfos)){
+            userManageMapper.batchSave(userInfos);
+        }
+        if(!CollectionUtils.isEmpty(companyConfs)){
+            userCompanyMapper.batchSave(companyConfs);
+        }
     }
 }

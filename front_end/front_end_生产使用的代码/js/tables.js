@@ -45,5 +45,50 @@ $(document).ready(function(){
             }
         });
     });
+
+    $("#importCompany").click(function upload() {
+        alert("进入上传。。。");
+        var formData = new FormData();
+        formData.append("file", $("#file")[0].files[0]);
+        formData.append("specialKey",$("#specialKey").val());
+        $.ajax({
+            "type":"post",
+            "url":"http://localhost:9000/importCompanyConf",
+            "data":formData,
+            "cache":false,
+            "processData": false,
+            "contentType" : false,
+            "dataType": 'json',
+            "success": function(){
+                alert("导入成功");
+            },
+            "error": function (){
+                alert("导入错误")
+            }
+        });
+    });
+
+    $("#importUser").click(function upload() {
+        alert("进入上传。。。");
+        var formData = new FormData();
+        formData.append("file", $("#file_user")[0].files[0]);
+        formData.append("specialKey",$("#specialKey_user").val());
+        $.ajax({
+            "type":"post",
+            "url":"http://localhost:9000/importUserInfo",
+            "data":formData,
+            "cache":false,
+            "processData": false,
+            "contentType" : false,
+            "dataType": 'json',
+            "success": function(){
+                alert("导入成功");
+            },
+            "error": function (){
+                alert("导入错误")
+            }
+        });
+    });
+
 });
 
