@@ -58,10 +58,10 @@ public class ExportAndImportRest {
         }
     }
 
-    @PostMapping("/exportCheckInfo")
+    @GetMapping("/exportCheckInfo")
     public void exportCheckInfo(HttpServletRequest request,
                                 HttpServletResponse response,
-                                @RequestBody CheckInfo checkInfo){
+                                @ModelAttribute CheckInfo checkInfo){
         try {
             exportAndImportService.exportCheckInfo(checkInfo,request,response);
         }

@@ -90,5 +90,12 @@ $(document).ready(function(){
         });
     });
 
+    $("#exportCheckInfo").click(function download() {
+        data={"specialKey":$("#specialKey_check").val()};
+        data=JSON.stringify(data);
+        var url = 'http://localhost:9000/exportCheckInfo?specialKey='+$("#specialKey_check").val();
+        window.location(url);
+    });
+
 });
 
