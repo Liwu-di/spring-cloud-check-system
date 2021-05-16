@@ -97,5 +97,55 @@ $(document).ready(function(){
         window.location(url);
     });
 
+    $( ".datepicker" ).datepicker({
+        numberOfMonths: 3,
+        showButtonPanel: true
+    });
+
+    $("#sendQ").bind("click",function Q(){
+        data={"startTime":$("#datepicker_qs").val(),
+            "endTime":$("#datepicker_qe").val(),
+            "userCode":$.cookie("userCode"),
+            "email":$("#email_q").val(),
+            "isAskForLeave":"1"};
+        data=JSON.stringify(data);
+        alert(data);
+        $.ajax({
+            "type":"post",
+            "url":"http://localhost:9000/vocation",
+            "data":data,
+            "contentType": "application/json;charset=UTF-8",
+            "success": function(){
+                alert("请假成功");
+            },
+            "error": function (){
+                alert("请假失败");
+            }
+        });
+    });
+
+    $("#sendX").bind("click",function X(){
+
+        data={"startTime":$("#datepicker_xs").val(),
+            "endTime":$("#datepicker_xe").val(),
+            "userCode":$.cookie("userCode"),
+            "email":$("#email_q").val(),
+            "isAskForLeave":"0"};
+        data=JSON.stringify(data);
+        $.ajax({
+            "type":"post",
+            "url":"http://localhost:9000/vocation",
+            "data":data,
+            "contentType": "application/json;charset=UTF-8",
+            "success": function(){
+                alert("销假成功");
+            },
+            "error": function (){
+                alert("销假失败");
+            }
+        });
+
+    });
+
 });
 

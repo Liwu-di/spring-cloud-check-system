@@ -516,6 +516,115 @@
               </div>
             </div>
           </div>
+
+          <div >
+            <div >
+              <div class="card">
+                <div class="card-header">
+                  <h4>请销假</h4>
+                </div>
+                <div class="card-body">
+
+                  <table style="width:100%;">
+                    <tbody>
+                    <tr>
+                      <td style="width: 40%">
+                        <div >
+                          <div >
+                            <div >
+                              <div class="card">
+                                <div class="card-header d-flex align-items-center">
+                                  <h4>请假</h4>
+                                </div>
+                                <div >
+                                  <div >
+                                    <div class="form-group row">
+                                      <label class="col-sm-2 form-control-label">请假起始日期</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" id="datepicker_qs" class="datepicker">
+                                      </div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group row">
+                                      <label class="col-sm-2 form-control-label">请假终止日期</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" id="datepicker_qe" class="datepicker">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label class="col-sm-2 form-control-label">直属上级邮箱</label>
+                                      <div class="col-sm-10">
+                                        <input id="email_q" type="email" name="password" >
+                                      </div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group row">
+                                      <div class="col-sm-4 offset-sm-2">
+                                        <button id="sendQ"  class="btn btn-primary">发送邮件</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="width: 20%">
+
+                      </td>
+
+
+                      <td style="width: 50%">
+                        <div >
+                          <div >
+                            <div >
+                              <div class="card">
+                                <div class="card-header d-flex align-items-center">
+                                  <h4>销假</h4>
+                                </div>
+                                <div >
+                                  <div >
+                                    <div class="form-group row">
+                                      <label class="col-sm-2 form-control-label">销假起始日期</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" id="datepicker_xs" class="datepicker">
+                                      </div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group row">
+                                      <label class="col-sm-2 form-control-label">销假终止日期</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" id="datepicker_xe" class="datepicker">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label class="col-sm-2 form-control-label">直属上级邮箱</label>
+                                      <div class="col-sm-10">
+                                        <input id="email_x" type="email" name="password" >
+                                      </div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group row">
+                                      <div class="col-sm-4 offset-sm-2">
+                                        <button id="sendX"  class="btn btn-primary">发送邮件</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <footer class="main-footer">
@@ -542,6 +651,10 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="js/qrcode.min.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+
+    <script src="js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="jqueryui/style.css">
     <!-- Main File-->
     <script src="js/front.js"></script>
     <script src="js/tables.js"></script>
