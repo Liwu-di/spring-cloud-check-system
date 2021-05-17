@@ -118,6 +118,8 @@ public class VocationServiceImpl implements VocationService {
 
     @Override
     public void saveRecord(Vocation vocation) {
+        vocation.setIsAskForLeave(StringUtils.equals("1",vocation.getIsAskForLeave())?"请假":"销假");
+        vocation.setIsApprove(StringUtils.equals("0",vocation.getIsApprove())?"不同意":"同意");
         vocationMapper.save(vocation);
     }
 }
