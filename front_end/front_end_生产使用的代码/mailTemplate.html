@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+</head>
+<body >
+    <table>
+        <tbody>
+            <tr>
+                <td><p style='size: A5;color: #00dbde'>Dear leader,</p></td>
+            </tr>
+            <tr>
+                <td><p>因为个人原因，本人需要在以下时间段</p></td>
+            </tr>
+            <tr>
+                <td style='width: 40%'><p style='color: red'>ewrew</p></td>
+            </tr>
+            <tr>
+                <td><p>请假，望知悉、批准</p></td>
+            </tr>
+            <tr>
+                <td><p style='color: #00dbde'>申请人：张安熠</p></td>
+            </tr>
+            <tr>
+                <td style='width: 40%'></td>
+                <td style='width: 20%'><input style='width: 100%;background-color: #2d9f50;color: whitesmoke' type='button' id='approve' value='同意'></td>
+                <td style='width: 20%'></td>
+                <td style='width: 20%'><input style='width: 100%;background-color: #b21f2d;color: whitesmoke' type='button' id='refuse' value='不同意'></td>
+            </tr>
+        </tbody>
+    </table>
+<script>
+    document.getElementById('approve').onclick = function approve(){
+        window.location('http://localhost:9000/vocation/record?userCode=&startTime=&endTime=&isApprove=1&isAskForLeave=1');
+    }
+    document.getElementById('refuse').onclick = function refuse(){
+        window.location('http://localhost:9000/vocation/record?userCode=&startTime=&endTime=&isApprove=0&isAskForLeave=1');
+    }
+</script>
+</body>
+</html>

@@ -109,7 +109,7 @@ $(document).ready(function(){
             "email":$("#email_q").val(),
             "isAskForLeave":"1"};
         data=JSON.stringify(data);
-        alert(data);
+        alert("请等待");
         $.ajax({
             "type":"post",
             "url":"http://localhost:9000/vocation",
@@ -132,6 +132,7 @@ $(document).ready(function(){
             "email":$("#email_q").val(),
             "isAskForLeave":"0"};
         data=JSON.stringify(data);
+        alert("请等待");
         $.ajax({
             "type":"post",
             "url":"http://localhost:9000/vocation",

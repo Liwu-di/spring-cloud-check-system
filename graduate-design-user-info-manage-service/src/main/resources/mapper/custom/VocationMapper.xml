@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.liwudi.graduatedesignuserinfomanage.mapper.VocationMapper">
+    <insert id="save" parameterType="fun.liwudi.graduatedesignuserinfomanage.domain.Vocation">
+        insert into vocation_record(user_code, start_time, is_approve, end_time, is_ask_for_leave, email)
+        values (#{userCode},#{startTime},#{isApprove},#{endTime},#{isAskForLeave},#{email});
+    </insert>
+</mapper>

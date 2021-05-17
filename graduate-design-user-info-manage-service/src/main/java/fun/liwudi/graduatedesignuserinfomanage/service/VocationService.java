@@ -14,4 +14,10 @@ public interface VocationService {
      * @return
      */
     JsonResponse sendMail(Vocation vocation);
+
+    /**
+     * 保存请销假记录
+     * @param vocation
+     */
+    void saveRecord(Vocation vocation);
 }

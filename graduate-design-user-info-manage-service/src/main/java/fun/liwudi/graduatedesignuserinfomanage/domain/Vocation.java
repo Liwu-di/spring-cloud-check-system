@@ -11,6 +11,8 @@ public class Vocation {
     private String isAskForLeave;
     private String email;
 
+    private String isApprove;
+
     public String getEmail() {
         return email;
     }
@@ -51,6 +53,14 @@ public class Vocation {
         this.isAskForLeave = isAskForLeave;
     }
 
+    public String getIsApprove() {
+        return isApprove;
+    }
+
+    public void setIsApprove(String isApprove) {
+        this.isApprove = isApprove;
+    }
+
     @Override
     public String toString() {
         return "Vocation{" +
@@ -59,6 +69,7 @@ public class Vocation {
                 ", endTime='" + endTime + '\'' +
                 ", isAskForLeave='" + isAskForLeave + '\'' +
                 ", email='" + email + '\'' +
+                ", isApprove='" + isApprove + '\'' +
                 '}';
     }
 }

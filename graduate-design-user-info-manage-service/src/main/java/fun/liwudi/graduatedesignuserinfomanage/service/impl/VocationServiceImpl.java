@@ -5,6 +5,7 @@ import fun.liwudi.graduatedesignuserinfomanage.domain.JsonResponse;
 import fun.liwudi.graduatedesignuserinfomanage.domain.UserInfo;
 import fun.liwudi.graduatedesignuserinfomanage.domain.Vocation;
 import fun.liwudi.graduatedesignuserinfomanage.helper.JsonResponseHelper;
+import fun.liwudi.graduatedesignuserinfomanage.mapper.VocationMapper;
 import fun.liwudi.graduatedesignuserinfomanage.service.UserManageService;
 import fun.liwudi.graduatedesignuserinfomanage.service.VocationService;
 import org.apache.commons.lang.StringUtils;
@@ -34,6 +35,9 @@ public class VocationServiceImpl implements VocationService {
     private UserManageService userManageService;
 
     @Autowired
+    private VocationMapper vocationMapper;
+
+    @Autowired
     private JavaMailSender mailSender;
 
     private Logger logger = LoggerFactory.getLogger(VocationServiceImpl.class);
@@ -59,7 +63,19 @@ public class VocationServiceImpl implements VocationService {
                         +vocation.getEndTime()
                         +"的请假取消，望知悉批准。"
                         +"\n"
-                        +userInfo.getUserName());
+                        +userInfo.getUserName()
+                        +"\n"
+                        +"请点击以下链接同意"
+                        +"http://localhost:9000/vocation/record?userCode=" + vocation.getUserCode()
+                        +"&startTime=" + vocation.getStartTime()+
+                        "&endTime=" + vocation.getEndTime()+
+                        "&isApprove=1&isAskForLeave=0"
+                        +"\n"
+                        +"或点击此链接拒绝"
+                        +"http://localhost:9000/vocation/record?userCode=" + vocation.getUserCode()
+                        +"&startTime=" + vocation.getStartTime()+
+                        "&endTime=" + vocation.getEndTime()+
+                        "&isApprove=0&isAskForLeave=0");
                 mailSender.send(simpleMailMessage);
                 logger.info("Sent message successfully....");
             }
@@ -76,7 +92,19 @@ public class VocationServiceImpl implements VocationService {
                         +vocation.getEndTime()
                         +"请假，望知悉批准。"
                         +"\n"
-                        +userInfo.getUserName());
+                        +userInfo.getUserName()
+                        +"\n"
+                        +"请点击以下链接同意"
+                        +"http://localhost:9000/vocation/record?userCode=" + vocation.getUserCode()
+                        +"&startTime=" + vocation.getStartTime()+
+                        "&endTime=" + vocation.getEndTime()+
+                        "&isApprove=1&isAskForLeave=1"
+                        +"\n"
+                        +"或点击此链接拒绝"
+                        +"http://localhost:9000/vocation/record?userCode=" + vocation.getUserCode()
+                        +"&startTime=" + vocation.getStartTime()+
+                        "&endTime=" + vocation.getEndTime()+
+                        "&isApprove=0&isAskForLeave=1");
                 mailSender.send(simpleMailMessage);
                 logger.info("Sent message successfully....");
             }
@@ -86,5 +114,10 @@ public class VocationServiceImpl implements VocationService {
             logger.error(mex.getMessage(),mex);
             return jsonResponseHelper.getJsonResponse(Constants.FAIL,1);
         }
+    }
+
+    @Override
+    public void saveRecord(Vocation vocation) {
+        vocationMapper.save(vocation);
     }
 }
