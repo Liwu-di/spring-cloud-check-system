@@ -6,16 +6,10 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.read.metadata.ReadSheet;
 import com.alibaba.excel.write.builder.ExcelWriterBuilder;
 import com.alibaba.excel.write.builder.ExcelWriterSheetBuilder;
-import fun.liwudi.graduatedesignuserinfomanage.domain.CheckInfo;
-import fun.liwudi.graduatedesignuserinfomanage.domain.CheckInfoExport;
-import fun.liwudi.graduatedesignuserinfomanage.domain.CompanyConfImport;
-import fun.liwudi.graduatedesignuserinfomanage.domain.UserInfoImport;
+import fun.liwudi.graduatedesignuserinfomanage.domain.*;
 import fun.liwudi.graduatedesignuserinfomanage.listener.CompanyConfListener;
 import fun.liwudi.graduatedesignuserinfomanage.listener.UserInfoListener;
-import fun.liwudi.graduatedesignuserinfomanage.mapper.CheckInfoMapper;
-import fun.liwudi.graduatedesignuserinfomanage.mapper.CompanyConfMapper;
-import fun.liwudi.graduatedesignuserinfomanage.mapper.UserCompanyMapper;
-import fun.liwudi.graduatedesignuserinfomanage.mapper.UserManageMapper;
+import fun.liwudi.graduatedesignuserinfomanage.mapper.*;
 import fun.liwudi.graduatedesignuserinfomanage.service.ExportAndImportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,6 +47,9 @@ public class ExportAndImportServiceImpl implements ExportAndImportService {
 
     @Autowired
     private CompanyConfMapper companyConfMapper;
+
+    @Autowired
+    private VocationMapper vocationMapper;
 
     private Logger logger = LoggerFactory.getLogger(ExportAndImportServiceImpl.class);
 
@@ -132,6 +129,39 @@ public class ExportAndImportServiceImpl implements ExportAndImportService {
             if (excelReader != null) {
                 // 这里千万别忘记关闭，读的时候会创建临时文件，到时磁盘会崩的
                 excelReader.finish();
+            }
+        }
+    }
+
+    @Override
+    public void exportVocationInfo(Vocation vocation, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            OutputStream outputStream = response.getOutputStream();
+            //添加响应头信息
+            response.setHeader("Content-Disposition", "attachment; filename=".
+                    concat("exportVocation-").
+                    concat(LocalDate.now().toString()).
+                    concat("-").
+                    concat(String.valueOf(LocalTime.now().getHour())).
+                    concat(String.valueOf(LocalTime.now().getMinute())).
+                    concat(String.valueOf(LocalTime.now().getSecond())).
+                    concat(".xlsx"));
+            response.setContentType(MediaType.MULTIPART_FORM_DATA_VALUE);
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("Pragma", "No-cache");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setDateHeader("Expires", 0);
+            List list = vocationMapper.selectAll(vocation);
+            ExcelWriterBuilder writerBuilder = EasyExcel.write(outputStream, Vocation.class);
+            ExcelWriterSheetBuilder writerSheetBuilder = writerBuilder.sheet("exportUser");
+            writerSheetBuilder.doWrite(list);
+        } catch (IOException e) {
+            logger.error(e.getMessage(),e);
+        } finally {
+            try {
+                response.getOutputStream().close();
+            } catch (IOException e) {
+                logger.error(e.getMessage(),e);
             }
         }
     }

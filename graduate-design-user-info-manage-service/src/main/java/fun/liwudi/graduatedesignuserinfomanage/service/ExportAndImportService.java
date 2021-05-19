@@ -1,6 +1,7 @@
 package fun.liwudi.graduatedesignuserinfomanage.service;
 
 import fun.liwudi.graduatedesignuserinfomanage.domain.CheckInfo;
+import fun.liwudi.graduatedesignuserinfomanage.domain.Vocation;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,5 +34,15 @@ public interface ExportAndImportService {
      * @param file
      */
     void importCompanyConf (MultipartFile file);
+
+    /**
+     * 导出请销假信息
+     * @param vocation
+     * @param request
+     * @param response
+     */
+    void exportVocationInfo(Vocation vocation,
+                            HttpServletRequest request,
+                            HttpServletResponse response);
 
 }

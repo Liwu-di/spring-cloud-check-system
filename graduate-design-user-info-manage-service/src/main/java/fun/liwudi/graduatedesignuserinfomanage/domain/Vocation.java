@@ -1,17 +1,37 @@
 package fun.liwudi.graduatedesignuserinfomanage.domain;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelProperty;
+
 /**
  * @author 李武第
  */
 public class Vocation {
 
+    @ExcelProperty(value = "序号")
+    private String id;
+    @ExcelProperty(value = "用户编码")
     private String userCode;
+    @ExcelProperty(value = "开始时间")
     private String startTime;
+    @ExcelProperty(value = "结束时间")
     private String endTime;
+    @ExcelProperty(value = "请假/销假")
     private String isAskForLeave;
+    @ExcelIgnore
     private String email;
-
+    @ExcelIgnore
+    private String specialKey;
+    @ExcelProperty(value = "审批结果")
     private String isApprove;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;
@@ -61,6 +81,14 @@ public class Vocation {
         this.isApprove = isApprove;
     }
 
+    public String getSpecialKey() {
+        return specialKey;
+    }
+
+    public void setSpecialKey(String specialKey) {
+        this.specialKey = specialKey;
+    }
+
     @Override
     public String toString() {
         return "Vocation{" +
@@ -69,6 +97,7 @@ public class Vocation {
                 ", endTime='" + endTime + '\'' +
                 ", isAskForLeave='" + isAskForLeave + '\'' +
                 ", email='" + email + '\'' +
+                ", specialKey='" + specialKey + '\'' +
                 ", isApprove='" + isApprove + '\'' +
                 '}';
     }

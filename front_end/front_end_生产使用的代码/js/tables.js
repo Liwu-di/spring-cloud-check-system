@@ -97,6 +97,13 @@ $(document).ready(function(){
         window.location(url);
     });
 
+    $("#exportVocation").click(function download() {
+        data={"specialKey":$("#specialKey_vocation").val()};
+        data=JSON.stringify(data);
+        var url = 'http://localhost:9000/exportVocationInfo?specialKey='+$("#specialKey_vocation").val();
+        window.location(url);
+    });
+
     $( ".datepicker" ).datepicker({
         numberOfMonths: 3,
         showButtonPanel: true

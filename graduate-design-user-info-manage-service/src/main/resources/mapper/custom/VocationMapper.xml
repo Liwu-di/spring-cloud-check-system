@@ -6,4 +6,13 @@
         insert into vocation_record(user_code, start_time, is_approve, end_time, is_ask_for_leave, email)
         values (#{userCode},#{startTime},#{isApprove},#{endTime},#{isAskForLeave},#{email});
     </insert>
+
+    <select id="selectAll" parameterType="fun.liwudi.graduatedesignuserinfomanage.domain.Vocation" resultType="fun.liwudi.graduatedesignuserinfomanage.domain.Vocation">
+        select id as id, user_code as userCode, start_time as startTime,
+               is_approve as isApprove, end_time as endTime, is_ask_for_leave as isAskForLeave,
+               email as email
+        from vocation_record
+        order by id desc
+            limit 10000;
+    </select>
 </mapper>

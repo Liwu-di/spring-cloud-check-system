@@ -3,6 +3,7 @@ package fun.liwudi.graduatedesignuserinfomanage.rest;
 import fun.liwudi.graduatedesignuserinfomanage.constants.Constants;
 import fun.liwudi.graduatedesignuserinfomanage.domain.CheckInfo;
 import fun.liwudi.graduatedesignuserinfomanage.domain.JsonResponse;
+import fun.liwudi.graduatedesignuserinfomanage.domain.Vocation;
 import fun.liwudi.graduatedesignuserinfomanage.helper.JsonResponseHelper;
 import fun.liwudi.graduatedesignuserinfomanage.service.ExportAndImportService;
 import org.slf4j.Logger;
@@ -64,6 +65,18 @@ public class ExportAndImportRest {
                                 @ModelAttribute CheckInfo checkInfo){
         try {
             exportAndImportService.exportCheckInfo(checkInfo,request,response);
+        }
+        catch (Exception e){
+            logger.error(e.getMessage(),e);
+        }
+    }
+
+    @GetMapping("/exportVocationInfo")
+    public void exportVocationInfo(HttpServletRequest request,
+                                   HttpServletResponse response,
+                                   @ModelAttribute Vocation vocation){
+        try {
+            exportAndImportService.exportVocationInfo(vocation,request,response);
         }
         catch (Exception e){
             logger.error(e.getMessage(),e);
