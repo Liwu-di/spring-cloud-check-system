@@ -1,15 +1,13 @@
 package fun.liwudi.graduatedesignverifyservice.rest;
 
 import fun.liwudi.graduatedesignverifyservice.consant.Constant;
-import fun.liwudi.graduatedesignverifyservice.domain.JsonResponse;
-import fun.liwudi.graduatedesignverifyservice.domain.UserConf;
-import fun.liwudi.graduatedesignverifyservice.domain.UserInfo;
-import fun.liwudi.graduatedesignverifyservice.domain.VerifyInfo;
+import fun.liwudi.graduatedesignverifyservice.domain.*;
 import fun.liwudi.graduatedesignverifyservice.helper.JsonResponseHelper;
 import fun.liwudi.graduatedesignverifyservice.service.VerifyService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -86,6 +84,26 @@ public class VerifyRest {
             }
         } else {
             return jsonResponseHelper.getJsonResponse(1, Constant.EMPTY_INFO, null);
+        }
+    }
+
+    @PostMapping("/mapCheck")
+    public JsonResponse mapCheck(@RequestBody MapCheck mapCheck){
+        try {
+            VerifyInfo verifyInfo = new VerifyInfo();
+            BeanUtils.copyProperties(mapCheck,verifyInfo);
+            verifyInfo.setCheckIp("地图打卡");
+            verifyInfo.setCheckAreaX(BigDecimal.valueOf(Double.valueOf(mapCheck.getPosition().getLng())));
+            verifyInfo.setCheckAreaY(BigDecimal.valueOf(Double.valueOf(mapCheck.getPosition().getLat())));
+            JsonResponse jsonResponse = verify(verifyInfo);
+            if(StringUtils.equals("0", String.valueOf(jsonResponse.getCode()))){
+                return jsonResponseHelper.getJsonResponse(0,Constant.SUCCESS_INFO,jsonResponse.getData());
+            }
+            return jsonResponseHelper.getJsonResponse(1,Constant.FAIL,null);
+        }
+        catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return jsonResponseHelper.getJsonResponse(1,Constant.ERROR_INFO,null);
         }
     }
 }
