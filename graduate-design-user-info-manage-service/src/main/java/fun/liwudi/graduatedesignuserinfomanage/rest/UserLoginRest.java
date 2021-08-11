@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author 李武第
  */
@@ -20,7 +23,7 @@ public class UserLoginRest {
     UserLoginService userLoginService;
 
     @PostMapping("/login")
-    public JsonResponse login(@RequestBody UserLogin userLogin){
-        return userLoginService.login(userLogin);
+    public JsonResponse login(@RequestBody UserLogin userLogin, HttpServletResponse response, HttpServletRequest request){
+        return userLoginService.login(userLogin,response,request);
     }
 }
