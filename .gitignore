@@ -1,5 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi
-/.idea
+
 *.iml
 *.ipr
 *.iws
@@ -8,6 +8,5 @@
 *.settings
 *.project
 target/
-.idea/**
+
 ~.*
-.idea/libraries/
