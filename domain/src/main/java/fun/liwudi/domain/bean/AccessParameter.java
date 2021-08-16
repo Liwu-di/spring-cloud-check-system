@@ -5,11 +5,11 @@ import java.util.Map;
 /**
  * @author 李武第
  */
-public class AccessParamater {
+public class AccessParameter {
 
     private String url;
 
-    private Map<String,String> paramater;
+    private Map<String,String> parameter;
 
     public String getUrl() {
         return url;
@@ -19,19 +19,19 @@ public class AccessParamater {
         this.url = url;
     }
 
-    public Map<String, String> getParamater() {
-        return paramater;
+    public Map<String, String> getParameter() {
+        return parameter;
     }
 
-    public void setParamater(Map<String, String> paramater) {
-        this.paramater = paramater;
+    public void setParameter(Map<String, String> parameter) {
+        this.parameter = parameter;
     }
 
     @Override
     public String toString() {
-        return "AccessParamater{" +
+        return "AccessParameter{" +
                 "url='" + url + '\'' +
-                ", paramater=" + paramater +
+                ", parameter=" + parameter +
                 '}';
     }
 }

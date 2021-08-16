@@ -1,5 +1,9 @@
 package fun.liwudi.domain.dto;
 
+import fun.liwudi.domain.constants.Constant;
+
+import java.util.ConcurrentModificationException;
+
 /**
  * @author 李武第
  */
@@ -39,5 +43,14 @@ public class JsonResponse<T> {
                 ", msg='" + msg + '\'' +
                 ", data=" + data +
                 '}';
+    }
+
+    public Boolean judgeSuccess(){
+        if(this.code == Constant.APPLICATION_SUCCESS){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
