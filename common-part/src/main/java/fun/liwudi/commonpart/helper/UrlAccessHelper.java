@@ -63,7 +63,7 @@ public class UrlAccessHelper {
                 return responseEntity.getBody();
             }
 
-        } catch (URISyntaxException e) {
+        } catch (Exception e) {
             logger.error(e.getMessage(),e);
             return jsonResponseHelper.getJsonResponse(Constant.CANNOT_ACCESS_URL,Constant.ERROR);
         }
@@ -90,25 +90,38 @@ public class UrlAccessHelper {
     }
 
     public JsonResponse accessByUrlUsePut(@RequestBody AccessParameter accessParameter){
-        HttpHeaders headers = new HttpHeaders();
-        if(!CollectionUtils.isEmpty(accessParameter.getHeaderParameter())){
-            for(Map.Entry<String,String> kv : accessParameter.getHeaderParameter().entrySet()){
-                headers.add(kv.getKey(),kv.getValue());
+        try{
+            HttpHeaders headers = new HttpHeaders();
+            if(!CollectionUtils.isEmpty(accessParameter.getHeaderParameter())){
+                for(Map.Entry<String,String> kv : accessParameter.getHeaderParameter().entrySet()){
+                    headers.add(kv.getKey(),kv.getValue());
+                }
             }
+            ResponseEntity<JsonResponse> response = restTemplate.exchange(accessParameter.getUrl(), HttpMethod.PUT, new HttpEntity(accessParameter.getBodyParameter(), headers), JsonResponse.class);
+            return response.getBody();
         }
-        ResponseEntity<JsonResponse> response = restTemplate.exchange(accessParameter.getUrl(), HttpMethod.PUT, new HttpEntity(accessParameter.getBodyParameter(), headers), JsonResponse.class);
-        return response.getBody();
+        catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return jsonResponseHelper.getJsonResponse(Constant.CANNOT_ACCESS_URL,Constant.ERROR);
+        }
     }
 
     public JsonResponse accessByUrlUseDelete(@RequestBody AccessParameter accessParameter){
-        HttpHeaders headers = new HttpHeaders();
-        if(!CollectionUtils.isEmpty(accessParameter.getHeaderParameter())){
-            for(Map.Entry<String,String> kv : accessParameter.getHeaderParameter().entrySet()){
-                headers.add(kv.getKey(),kv.getValue());
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            if(!CollectionUtils.isEmpty(accessParameter.getHeaderParameter())){
+                for(Map.Entry<String,String> kv : accessParameter.getHeaderParameter().entrySet()){
+                    headers.add(kv.getKey(),kv.getValue());
+                }
             }
+            ResponseEntity<JsonResponse> response = restTemplate.exchange(accessParameter.getUrl(), HttpMethod.DELETE, new HttpEntity(accessParameter.getBodyParameter(), headers), JsonResponse.class);
+            return response.getBody();
         }
-        ResponseEntity<JsonResponse> response = restTemplate.exchange(accessParameter.getUrl(), HttpMethod.DELETE, new HttpEntity(accessParameter.getBodyParameter(), headers), JsonResponse.class);
-        return response.getBody();
+        catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return jsonResponseHelper.getJsonResponse(Constant.CANNOT_ACCESS_URL,Constant.ERROR);
+        }
+
     }
 
 }
