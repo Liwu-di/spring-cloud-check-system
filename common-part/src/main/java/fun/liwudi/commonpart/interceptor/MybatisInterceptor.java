@@ -2,11 +2,14 @@ package fun.liwudi.commonpart.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -23,9 +26,10 @@ import java.sql.Connection;
                 method = "update",
                 args = {MappedStatement.class,Object.class}),
         @Signature(
-                method = "prepare",
-                type = StatementHandler.class,
-                args = {Connection.class,Integer.class})})
+                method = "query",
+                type = Executor.class,
+                args = {MappedStatement.class,Object.class, RowBounds.class,
+                        ResultHandler.class, CacheKey.class,BoundSql.class})})
 public class MybatisInterceptor implements Interceptor {
 
     @Override

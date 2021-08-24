@@ -6,6 +6,7 @@ import fun.liwudi.authservice.service.PublicVerifyService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * @author 李武第
@@ -18,6 +19,11 @@ public class PublicVerifyServiceImpl implements PublicVerifyService {
 
     @Override
     public Boolean isExistAk(PublicVerifyDto publicVerifyDto) {
-        return true;
+        if(Objects.nonNull(publicVerifyMapper.findOne(publicVerifyDto))){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

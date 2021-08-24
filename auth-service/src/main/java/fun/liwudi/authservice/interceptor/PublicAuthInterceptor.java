@@ -55,14 +55,16 @@ public class PublicAuthInterceptor {
         HttpServletRequest request = sra.getRequest();
         Object result = null;
         Enumeration<String> enumeration = request.getHeaderNames();
-        Map<String,String> headers = new LinkedHashMap<>();
+        List<String> headerNames = new ArrayList<>();
+        Map<String,String> headers = new HashMap<>();
         while (enumeration.hasMoreElements()) {
             String name = enumeration.nextElement();
             String value = request.getHeader(name);
+            headerNames.add(name);
             headers.put(name,value);
         }
-        if(!CollectionUtils.contains(enumeration,Constant.PUBLIC_NAME)
-        || !CollectionUtils.contains(enumeration,Constant.PUBLIC_PASS)
+        if(!headerNames.contains(Constant.PUBLIC_NAME)
+        || !headerNames.contains(Constant.PUBLIC_PASS)
         || StringUtils.isBlank(headers.get(Constant.PUBLIC_PASS))
         || StringUtils.isBlank(headers.get(Constant.PUBLIC_NAME))){
             throw new BusinessException("该操作需要AK账号密码");
