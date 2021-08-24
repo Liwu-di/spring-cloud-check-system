@@ -55,9 +55,11 @@ public class BusinessExceptionHandler {
     @ExceptionHandler(value = BusinessException.class)
     @ResponseStatus(HttpStatus.OK)
     public Map myErrorHandler(BusinessException ex) {
+
         Map map = new HashMap(4);
         map.put("code", ex.getCode());
         map.put("msg", ex.getMsg());
         return map;
+
     }
 }

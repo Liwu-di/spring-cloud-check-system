@@ -24,7 +24,9 @@ public class AuthServiceApplication {
 
     @Bean
     Interceptor interceptor(){
+
         return new MybatisInterceptor();
+
     }
     public static void main(String[] args) {
         SpringApplication.run(AuthServiceApplication.class, args);
