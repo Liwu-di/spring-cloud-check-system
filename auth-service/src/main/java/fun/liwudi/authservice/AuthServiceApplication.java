@@ -9,6 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author 李武第
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 @EnableDiscoveryClient
 @EnableFeignClients
 @MapperScan("fun.liwudi.authservice.mapper")
+@ComponentScan(value = {"fun.liwudi.*"})
 public class AuthServiceApplication {
 
     @Bean

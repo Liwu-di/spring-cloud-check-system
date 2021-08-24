@@ -1,6 +1,7 @@
 package fun.liwudi.authservice.rest;
 
 import fun.liwudi.authservice.mapper.test;
+import fun.liwudi.commonpart.annotation.PublicAK;
 import fun.liwudi.domain.bean.BaseDomain;
 import fun.liwudi.domain.dto.JsonResponse;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ public class rest {
     @Resource
     private test test1;
 
+    @PublicAK
     @GetMapping("test")
     public void test(){
         test1.test(new BaseDomain());

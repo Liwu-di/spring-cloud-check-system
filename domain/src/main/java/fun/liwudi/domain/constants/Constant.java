@@ -12,6 +12,12 @@ public interface Constant {
     String EXPORT_ERROR = "export error!";
     String IMPORT_ERROR = "import error!";
     String CANNOT_ACCESS_URL = "cannot access url";
+    String PUBLIC_NAME = "public_name";
+    String PUBLIC_PASS = "public_pass";
+    String ERROR_CODE = "1";
+    String CANNOT_ACCESS_CODE = "401";
+    String SUCCESS_CODE = "200";
+    String SERVER_FAIL = "500";
 
     Integer APPLICATION_SUCCESS = 0;
     Integer CODE_SUCCESS = 200;
