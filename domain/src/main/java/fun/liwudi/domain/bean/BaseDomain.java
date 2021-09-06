@@ -21,4 +21,6 @@ public class BaseDomain {
     private String updateUser;
 
     private String updateTime;
+
+    private Integer deleteFlag;
 }
